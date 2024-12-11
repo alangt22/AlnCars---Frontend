@@ -70,7 +70,7 @@ const Profile = () => {
         <div className={styles.profile_header}>
             <h1>Perfil</h1>
             {(user.image || preview) && (
-                <RoundedImage src={preview ? URL.createObjectURL(preview) : `${import.meta.env.VITE_API_URL}/images/users/${user.image}`}
+                <RoundedImage src={preview ? URL.createObjectURL(preview) : `${import.meta.env.VITE_API_URL}/public/images/users/${user.image}`}
                     alt={user.name}
                 />
             )}

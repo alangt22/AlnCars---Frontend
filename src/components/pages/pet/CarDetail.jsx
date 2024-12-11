@@ -77,7 +77,7 @@ const CarDetail = () => {
                     <div className={styles.pet_images}>
                         {car.images && car.images.length > 0 && (
                             <img
-                                src={`${import.meta.env.VITE_API_URL}/images/cars/${car.images[currentIndex]}`}
+                                src={`${import.meta.env.VITE_API_URL}/public/images/cars/${car.images[currentIndex]}`}
                                 alt={car.name}
                             />
                         )}
