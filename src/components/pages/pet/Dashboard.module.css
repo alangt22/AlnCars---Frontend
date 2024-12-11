@@ -1,0 +1,175 @@
+.petslist_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2em;
+}
+
+h1 {
+  color: #000;
+  margin: 0;
+}
+
+.petslist_header a {
+  text-decoration: none;
+  background-color: #16479d;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.5s;
+  padding: 0.5em 0.8em;
+  border-radius: 5px;
+  border: 2px solid #16479d;
+}
+
+.petslist_header a:hover {
+  background-color: transparent;
+  color: #16479d;
+}
+
+.petslist_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.petlist_row {
+  border-bottom: 1px solid #16479d;
+  padding: 1em;
+  margin: 1em;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.petlist_row img {
+  margin-right: 1em;
+}
+
+.petlist_row span {
+  min-width: 100px;
+}
+
+.actions {
+  margin-left: auto;
+}
+
+.actions a,
+.actions button {
+  text-decoration: none;
+  color: #16479d;
+  border: 2px solid #16479d;
+  border-radius: 5px;
+  padding: 7px 12px;
+  background-color: #fff;
+  margin-left: 1em;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 12px;
+}
+
+.actions a:hover,
+.actions button:hover {
+  background-color: #16479d;
+  color: #fff;
+}
+
+.actions .conclude_btn {
+  color: #25b456;
+  border-color: #25b456;
+}
+
+.actions .conclude_btn:hover {
+  color: #fff;
+  background-color: #25b456;
+}
+
+/* my adoptions */
+.contacts {
+  margin: 2em;
+}
+
+.contacts p {
+  margin: 0.5em;
+}
+
+/* Responsividade para telas pequenas */
+@media (max-width: 768px) {
+  .petlist_row {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;  
+    width: 90%;
+    margin: 0.5em auto; 
+  }
+
+  .petslist_header {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    margin-bottom: 1em;
+  }
+
+  .petslist_header h1 {
+    font-size: 1.5em; 
+    text-align: center; 
+    color: #000;
+  }
+  .petslist_header a{
+    margin-top: 1em;
+  }
+
+  .petslist_container {
+    padding: 0 1em; 
+  }
+
+  .actions {
+    margin-left: 0;
+    margin-top: 1em; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+  }
+
+  .actions a,
+  .actions button {
+    margin-left: 0;
+    width: 100%;
+    margin-bottom: 0.5em; 
+    font-size: 14px; 
+  }
+
+  /* Ajuste para imagens pequenas */
+  .petlist_row img {
+    width: 100%;
+    max-width: 150px; 
+    margin-right: 0;
+    margin-bottom: 1em; 
+  }
+
+  .contacts {
+    margin-left: 0;
+    padding: 0;
+  }
+}
+
+/* Estilo para o link do WhatsApp */
+.whatsappLink {
+  color: #25D366;  /* Cor verde do WhatsApp */
+  text-decoration: none;  /* Remove o sublinhado */
+  font-weight: bold;  /* Deixa o texto em negrito */
+  transition: color 0.3s ease;  /* Efeito suave de transição para a cor no hover */
+  margin-left: 0.2em;
+}
+
+/* Efeito de hover */
+.whatsappLink:hover {
+  color: #128C7E;  /* Cor do WhatsApp quando o mouse passa por cima */
+}
+.icon{
+  color: #16479d;
+  font-size: 1.5em;
+  margin-left: 0.2em;
+}
+

@@ -1,0 +1,23 @@
+.footer{
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    color: #444;
+    margin-top: 94px;
+    box-shadow: 2px -5px 10px -6px rgba(0, 0, 0,1);
+-webkit-box-shadow: 2px -5px 10px -6px rgba(0, 0, 0,1);
+-moz-box-shadow: 2px -5px 10px -6px rgba(0, 0, 0,1);
+}
+.footer a{
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+}
+.footer a:hover{
+    color: #3ddc35;
+}
+footer p{
+    margin-top: 1em;
+}

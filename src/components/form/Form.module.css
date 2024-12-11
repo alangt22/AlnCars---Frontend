@@ -1,0 +1,112 @@
+/* Form container */
+.form_container {
+    max-width: 300px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 1em;
+    
+}
+.form_container_2{
+    max-width: 300px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 15px;
+
+}
+
+/* Estilo do botão de submit */
+.form_container input[type='submit'],
+.form_container button {
+    border-radius: 8px;
+    background-color: #25b456;
+    color: #fff;
+    border: none;
+    min-width: 100px;
+    min-height: 2.5em;
+    width: 100%;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    position: relative; 
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilo quando o botão estiver em hover */
+.form_container button:hover {
+    background-color: #1c8a42;
+}
+
+/* Botão desabilitado com o estado de carregamento */
+.form_container button:disabled {
+    background-color: #c7c7c7; 
+}
+
+/* Estilo do loader */
+.loader {
+    border: 3px solid #fff;
+    border-top: 3px solid transparent;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+    position: absolute;
+}
+.loader_2 {
+    border: 3px solid #fff;
+    border-top: 3px solid transparent;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+    display: flex;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.form_container p  {
+    margin-top: 1em;
+}
+
+.form_container p a {
+    color: #16479d;
+    font-weight: bold;
+}
+
+/* form de pets */
+.preview_pet_images {
+    display: flex;
+    justify-content: center;
+    margin: 1em;
+}
+
+.preview_pet_images img {
+    width: 100px;
+    height: 100px;
+    margin-left: 1em;
+}
+
+
+/**/
+.form_container label{
+    margin-bottom: .3em;
+    font-weight: bold;
+    font-size: .8em;
+}
+.input {
+    padding: .7em;
+    border: 1px solid #777;
+    border-radius: 5px;
+    width: 270px;
+    margin-bottom: 1em;
+    margin-top: 2px;
+}
+.input::placeholder {
+    color: #7b7b7b;
+}
