@@ -89,7 +89,7 @@ const Navbar = () => {
             <div className={styles.userProfileImage}>
               {userImage ? (
                 <img 
-                  src={`${import.meta.env.VITE_API_URL}/public/images/users/${userImage}`} 
+                  src={`${import.meta.env.VITE_API_URL}/images/users/${userImage}`} 
                   alt="Imagem do usuário" 
                   className={styles.profileImage}
                 />

@@ -71,7 +71,7 @@ function Home() {
                   {car.images && car.images.length > 0 && (
                     <div
                       style={{
-                        backgroundImage: `url(${import.meta.env.VITE_API_URL}/public/images/cars/${car.images[currentIndex]})`,
+                        backgroundImage: `url(${import.meta.env.VITE_API_URL}/images/cars/${car.images[currentIndex]})`,
                       }}
                       className={styles.pet_card_image}
                     ></div>
@@ -86,7 +86,7 @@ function Home() {
                 </div>
                 <h3>{car.name}</h3>
                 <p>
-                  <span className="bold">Preço:</span> +R${car.price}
+                  <span className="bold">Preço:</span> R${car.price}
                 </p>
                 <p>
                   <span className="bold">Localidade:</span> {car.location}
