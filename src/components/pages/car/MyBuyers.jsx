@@ -23,7 +23,7 @@ const MyBuyers = () => {
   return (
     <section>
       <div className={styles.carlist_header}>
-        <h1>Minhas Compras</h1>
+        <h1 className={styles.title}>Minhas Compras</h1>
       </div>
       <div className={styles.carlist_container}>
         {cars.length > 0 ? (

@@ -8,3 +8,8 @@
     font-size: 3em;
     margin:0.2em ;
 }
+@media (max-width: 480px) {
+    .profile_header{
+        margin-top: 6em;
+    }
+}

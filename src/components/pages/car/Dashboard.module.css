@@ -112,12 +112,16 @@ h1 {
     align-items: center; 
     justify-content: center;
     margin-bottom: 1em;
+    
   }
-
+  .title{
+    margin-top: 3em;
+  }
   .carslist_header h1 {
     font-size: 1.5em; 
     text-align: center; 
     color: #000;
+    margin-top: 5em;
   }
   .carslist_header a{
     margin-top: 1em;
