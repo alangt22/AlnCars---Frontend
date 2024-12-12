@@ -7,6 +7,15 @@
     padding: 1em;
     
 }
+.form_container h4{
+    font-size: 0.8em;
+    margin: 10px;
+}
+textarea{
+    width: 250px;
+    height: 250px;
+}
+
 .form_container_2{
     max-width: 300px;
     margin: 0 auto;
@@ -34,12 +43,12 @@
     align-items: center;
 }
 
-/* Estilo quando o botão estiver em hover */
+
 .form_container button:hover {
     background-color: #1c8a42;
 }
 
-/* Botão desabilitado com o estado de carregamento */
+
 .form_container button:disabled {
     background-color: #c7c7c7; 
 }
@@ -110,3 +119,26 @@
 .input::placeholder {
     color: #7b7b7b;
 }
+.checkbox {
+    margin-bottom: 1em;
+    accent-color: #25b456;  
+    transform: scale(1);  
+    cursor: pointer;  
+}
+
+.form_container label {
+    font-size: 0.8em;
+    margin: 5px 0;  
+    font-weight: bold;
+    display: block;  
+    cursor: pointer;
+}
+
+@media (max-width: 480px) {
+    .form_container {
+        margin-top: 4em;
+        
+    }
+}
+
+

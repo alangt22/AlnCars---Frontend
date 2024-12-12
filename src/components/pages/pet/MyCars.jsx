@@ -71,14 +71,14 @@ function MyCars() {
 
   return (
     <section>
-      <div className={styles.petslist_header}>
+      <div className={styles.carslist_header}>
         <h1>Meus Carros Cadastrados</h1>
         <Link to="/cars/add">Cadastrar Carro</Link>
       </div>
-      <div className={styles.petslist_container}>
+      <div className={styles.carslist_container}>
         {cars.length > 0 ? (
           cars.map((car) => (
-            <div key={car._id} className={styles.petlist_row}>
+            <div key={car._id} className={styles.carlist_row}>
               <RoundedImage
                 src={`${import.meta.env.VITE_API_URL}/images/cars/${car.images[0]}`}
                 alt={car.name}

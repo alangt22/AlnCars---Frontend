@@ -18,8 +18,38 @@ const Carform = ({ handleSubmit, carData, btnText }) => {
         "Sensor de estacionamento",
         "Câmera de ré",
         "Faróis de LED",
-        "Volante de couro"
+        "Volante de couro",
+        "Sensor de colisão",
+        "GPS",
+        "Bancos de couro",
+        "Assistente de estacionamento",
+        "Assistente de mudança de faixa",
+        "Câmera 360°",
+        "Controle de tração",
+        "Freios ABS",
+        "Faróis adaptativos",
+        "Alerta de colisão frontal",
+        "Monitoramento de ponto cego",
+        "Piloto automático",
+        "Chave presencial",
+        "Sistema de som premium",
+        "Carregamento wireless",
+        "Entrada USB",
+        "Controle de estabilidade",
+        "Ar-condicionado digital",
+        "Ajuste elétrico dos bancos",
+        "Banco com aquecimento",
+        "Bancos com ventilação",
+        "Volante aquecido",
+        "Vidros elétricos",
+        "Para-brisa aquecido",
+        "Reconhecimento de sinais de trânsito",
+        "Luzes de cortesia",
+        "Teto panorâmico",
+        "Pneus Run-flat"
     ];
+    
+    
 
     function onFileChange(e) {
         setPreview(Array.from(e.target.files))
@@ -52,8 +82,8 @@ const Carform = ({ handleSubmit, carData, btnText }) => {
         setCar(prevCar => ({
             ...prevCar,
             features: checked 
-                ? [...prevCar.features, value]  // Adiciona a feature se o checkbox estiver marcado
-                : prevCar.features.filter(feature => feature !== value)  // Remove a feature se desmarcado
+                ? [...prevCar.features, value]  
+                : prevCar.features.filter(feature => feature !== value)  
         }));
     };
 
@@ -160,6 +190,16 @@ const Carform = ({ handleSubmit, carData, btnText }) => {
                 handleOnChange={handleFuel}
                 value={car.fuel || ''}
             />
+            <h4>Mais Informações:</h4>
+            <textarea 
+                text="Mais informações"
+                type="text"
+                name="moreInfo"
+                placeholder="informações adicionais"
+                onChange={handleChange}
+                value={car.moreInfo || ""}
+            >
+            </textarea>
             <Input
                 text="Localização"
                 type="text"
@@ -168,14 +208,14 @@ const Carform = ({ handleSubmit, carData, btnText }) => {
                 handleOnChange={handleChange}
                 value={car.location || ""}
             />
-            <div>
+            <div className={formStyles.checkbox}>
                 <h3>Selecione as Features:</h3>
                 {featuresOptions.map((feature) => (
                     <label key={feature}>
                         <input
                             type="checkbox"
                             value={feature}
-                            checked={car.features.includes(feature)}  // Verifica se a feature já está selecionada
+                            checked={car.features.includes(feature)}  
                             onChange={handleCheckboxChange}
                         />
                         {feature}

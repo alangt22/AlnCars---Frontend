@@ -10,11 +10,11 @@ import Home from './components/pages/Home.jsx'
 import Login from './components/pages/auth/Login.jsx'
 import Register from './components/pages/auth/Register.jsx'
 import Profile from './components/pages/User/Profile.jsx'
-import MyCars from './components/pages/pet/MyCars.jsx'
-import AddCar from './components/pages/pet/AddCar.jsx'
-import EditCar from './components/pages/pet/EditCar.jsx'
-import CarDetail from './components/pages/pet/CarDetail.jsx'
-import MyBuyers from './components/pages/pet/MyBuyers.jsx'
+import MyCars from './components/pages/car/MyCars.jsx'
+import AddCar from './components/pages/car/AddCar.jsx'
+import EditCar from './components/pages/car/EditCar.jsx'
+import CarDetail from './components/pages/car/CarDetail.jsx'
+import MyBuyers from './components/pages/car/MyBuyers.jsx'
 
 const router = createBrowserRouter([
   {

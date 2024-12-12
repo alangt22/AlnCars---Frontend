@@ -61,7 +61,7 @@ function addCar() {
 
   return (
     <section>
-      <div className={styles.addpet_header}>
+      <div className={styles.addcar_header}>
         <h1>Cadastre um Carro</h1>
         <p>Depois ele ficará disponível para Compra</p>
       </div>

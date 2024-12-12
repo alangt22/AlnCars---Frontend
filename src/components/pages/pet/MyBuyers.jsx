@@ -22,13 +22,13 @@ const MyBuyers = () => {
 
   return (
     <section>
-      <div className={styles.petlist_header}>
+      <div className={styles.carlist_header}>
         <h1>Minhas Compras</h1>
       </div>
-      <div className={styles.petlist_container}>
+      <div className={styles.carlist_container}>
         {cars.length > 0 ? (
           cars.map((car) => (
-            <div key={car._id} className={styles.petlist_row}>
+            <div key={car._id} className={styles.carlist_row}>
               <RoundedImage
                 src={`${import.meta.env.VITE_API_URL}/images/cars/${car.images[0]}`}
                 alt={car.name}
@@ -36,22 +36,23 @@ const MyBuyers = () => {
               />
               <span className="bold">{car.name}</span>
               <div className={styles.contacts}>
-  <p>
-    <span className="bold">Ligue para:</span> <span> {car.user.phone}</span>
-  </p>
-  <FontAwesomeIcon icon={faWhatsapp} className={styles.icon}/>
-  <a 
-    href={`https://api.whatsapp.com/send/?phone=${car.user.phone}&text=Olá%20${car.user.name},%20estou%20interessado%20em%20Comprar%20seu%20pet.%20&type=phone_number&app_absent=0`}
-    target="_blank"
-    rel="noopener noreferrer"
-    className={styles.whatsappLink}  // Classe CSS para o link
-  >
-     {car.user.phone}
-  </a>
-  <p>
-    <span className="bold">Fale com:</span> {car.user.name}
-  </p>
-</div>
+                <p>
+                  <span className="bold">Ligue para:</span> <span> {car.user.phone}</span>
+                </p>
+                <p className={styles.app}>Clique no link abaixo para falar no Wathsapp</p>
+                <FontAwesomeIcon icon={faWhatsapp} className={styles.icon}/>
+                <a 
+                  href={`https://api.whatsapp.com/send/?phone=${car.user.phone}&text=Olá%20${car.user.name},%20estou%20interessado%20em%20Comprar%20seu%20Carro.%20&type=phone_number&app_absent=0`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.whatsappLink}  // Classe CSS para o link
+                >
+                  {car.user.phone}
+                </a>
+                <p>
+                  <span className="bold">Fale com:</span> {car.user.name}
+                </p>
+              </div>
 
               <div className={styles.actions}>
                 {car.available ? (

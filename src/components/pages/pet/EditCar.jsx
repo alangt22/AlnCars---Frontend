@@ -59,7 +59,7 @@ const EditCar = () => {
 
   return (
     <section>
-        <div className={styles.addpet_header}>
+        <div className={styles.addcar_header}>
             <h1>Editando o Carro: {car.name}</h1>
             <p>Depois da edição os Carros serão atualizados no sistema</p>
         </div>

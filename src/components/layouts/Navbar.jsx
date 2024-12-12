@@ -6,12 +6,12 @@ import { Context } from '../../context/UserContext';
 import api from '../../utils/api';
 
 const Navbar = () => {
-  const { authenticated, logout, user } = useContext(Context); // Acesse o 'user' do contexto se já tiver
+  const { authenticated, logout, user } = useContext(Context); 
   const [menuOpen, setMenuOpen] = useState(false); 
-  const [userImage, setUserImage] = useState(''); // Para armazenar a imagem do usuário
+  const [userImage, setUserImage] = useState(''); 
   const menuRef = useRef(null);  
 
-  // Buscar a imagem do usuário, se estiver autenticado
+  
   useEffect(() => {
     if (authenticated) {
       const fetchUserImage = async () => {
@@ -21,7 +21,7 @@ const Navbar = () => {
               Authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
             }
           });
-          setUserImage(response.data.image); // Atualiza a imagem do usuário
+          setUserImage(response.data.image); 
         } catch (error) {
           console.error('Erro ao buscar imagem de perfil', error);
         }
@@ -83,9 +83,9 @@ const Navbar = () => {
               <Link to="/user/profile" onClick={handleMenuItemClick}>Perfil</Link>
             </li>
             <li onClick={handleLogout}>Sair</li>
-            <div className={styles.onlineCircle}><span></span></div>
+        
 
-            {/* Exibindo a imagem do perfil */}
+            
             <div className={styles.userProfileImage}>
               {userImage ? (
                 <img 
@@ -94,7 +94,7 @@ const Navbar = () => {
                   className={styles.profileImage}
                 />
               ) : (
-                <div className={styles.profileImagePlaceholder}>Perfil</div> // Placeholder caso a imagem não exista
+                <div className={styles.profileImagePlaceholder}>Perfil</div> 
               )}
             </div>
           </>

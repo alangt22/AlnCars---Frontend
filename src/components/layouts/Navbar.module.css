@@ -47,11 +47,12 @@
 
 .navbar li:hover > a {
     color: #3ddc35;
+    text-decoration: none;
 }
 
 /* Estilos para o menu hamburguer */
 .menuToggle {
-    margin-top: 0.5em;
+    margin-top: 1em;
     display: none;
     flex-direction: column;
     justify-content: space-between;
