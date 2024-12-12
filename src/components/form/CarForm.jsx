@@ -22,7 +22,6 @@ const Carform = ({ handleSubmit, carData, btnText }) => {
         "Kia", 
         "Mercedes-Benz", 
         "Jeep", 
-        "Porsche",
         "Mitsubishi"
     ];
     const transmissions = ["Manual", "Automatico", "CVT"]
