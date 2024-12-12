@@ -7,9 +7,41 @@ const Carform = ({ handleSubmit, carData, btnText }) => {
     const [car, setCar] = useState({features: [], ...carData || {}})
     const [preview, setPreview] = useState([])
     const [isLoading, setIsLoading] = useState(false) 
-    const brands = ["Honda", "Fiat", "Ford", "Chevrolet", "Renault"]
+    const brands = [
+        "Honda", 
+        "Fiat", 
+        "Ford", 
+        "Chevrolet", 
+        "Renault", 
+        "Toyota", 
+        "Volkswagen", 
+        "BMW", 
+        "Audi", 
+        "Nissan", 
+        "Hyundai", 
+        "Kia", 
+        "Mercedes-Benz", 
+        "Jeep", 
+        "Porsche"
+    ];
     const transmissions = ["Manual", "Automatico", "CVT"]
-    const colors = ["Branco", "Preto", "Vermelho", "Cinza", "Azul"]
+    const colors = [
+        "Branco", 
+        "Preto", 
+        "Vermelho", 
+        "Cinza", 
+        "Azul", 
+        "Prata", 
+        "Verde", 
+        "Amarelo", 
+        "Laranja", 
+        "Bege", 
+        "Rosa", 
+        "Dourado", 
+        "Vinho", 
+        "Branco Perolizado", 
+        "Cinza Escuro"
+    ];
     const fuels = ["Gasolina", "Acool", "Flex", "Hibrido"]
     const featuresOptions = [
         "Ar-condicionado",
