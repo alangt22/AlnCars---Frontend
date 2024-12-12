@@ -148,6 +148,9 @@
   
   
 @media (max-width: 480px) {
+  .car_home_header h1 {  
+    margin-top: 5em;
+  }
     .car_card {
       width: 100%;
     }
