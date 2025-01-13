@@ -119,7 +119,7 @@ function MyCars() {
   return (
     <section>
       <div className={styles.carslist_header}>
-        <h1>Meus Anuncios Cadastrados</h1>
+        <h1 className={styles.titleCar}>Meus Anuncios Cadastrados</h1>
         <Link to="/cars/add">Cadastrar Carro</Link>
         <Link to="/rodas/add">Cadastrar Roda</Link>
       </div>
