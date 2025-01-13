@@ -9,9 +9,9 @@ import useFlashMessage from '../../../hooks/useFlashMessage'
 
 function MyCars() {
   const [cars, setCars] = useState([])
+  const [rodas, setRodas] = useState([])
   const [token] = useState(localStorage.getItem('token') || '')
   const { setFlashMessage } = useFlashMessage()
-
 
   if (!token) {
     setFlashMessage('Você precisa estar logado para acessar essa página!', 'error')
@@ -33,7 +33,21 @@ function MyCars() {
       })
   }, [token])
 
-  // Função para remover o pet
+  useEffect(() => {
+    api
+      .get('/rodas/myrodas', {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(token)}`,
+        },
+      })
+      .then((response) => {
+        setRodas(response.data.rodas)
+      })
+      .catch((err) => {
+        setFlashMessage('Erro ao carregar suas Rodas!', err)
+      })
+  }, [token])
+
   async function removeCar(id) {
     let msgType = 'success'
 
@@ -52,7 +66,24 @@ function MyCars() {
     }
   }
 
-  // Função para concluir a adoção do pet
+  async function removeRodas(id) {
+    let msgType = 'success'
+
+    try {
+      const response = await api.delete(`/rodas/${id}`, {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(token)}`,
+        },
+      })
+      const updatedRodas = rodas.filter((roda) => roda._id !== id)
+      setRodas(updatedRodas)
+      setFlashMessage(response.data.message, msgType)
+    } catch (err) {
+      msgType = 'error'
+      setFlashMessage(err.response?.data?.message || 'Erro ao excluir a Roda.', msgType)
+    }
+  }
+
   async function concludeBuyer(id) {
     let msgType = 'success'
 
@@ -69,12 +100,30 @@ function MyCars() {
     }
   }
 
+  async function concludeBuyer2(id) {
+    let msgType = 'success'
+
+    try {
+      const response = await api.patch(`/rodas/conclude/${id}`, {}, {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(token)}`,
+        },
+      })
+      setFlashMessage(response.data.message, msgType)
+    } catch (err) {
+      msgType = 'error'
+      setFlashMessage(err.response?.data?.message || 'Erro ao concluir a Compra.', msgType)
+    }
+  }
+
   return (
     <section>
       <div className={styles.carslist_header}>
-        <h1>Meus Carros Cadastrados</h1>
+        <h1>Meus Anuncios Cadastrados</h1>
         <Link to="/cars/add">Cadastrar Carro</Link>
+        <Link to="/rodas/add">Cadastrar Roda</Link>
       </div>
+      
       <div className={styles.carslist_container}>
         {cars.length > 0 ? (
           cars.map((car) => (
@@ -108,15 +157,59 @@ function MyCars() {
                     </button>
                   </>
                 ) : (
-                  <p>Carro já Comprado</p>
+                  <p className={styles.check}>Compra concluida!</p>
                 )}
               </div>
             </div>
           ))
-        ) : (
-          <p>Ainda não há Carros cadastrados!</p>
-        )}
+        ) : null}
       </div>
+
+      <div className={styles.carslist_container}>
+        {rodas.length > 0 ? (
+          rodas.map((roda) => (
+            <div key={roda._id} className={styles.carlist_row}>
+              <RoundedImage
+                src={`${import.meta.env.VITE_API_URL}/images/rodas/${roda.images[0]}`}
+                alt={roda.name}
+                width="px75"
+              />
+              <span className="bold">{roda.name}</span>
+              <div className={styles.actions}>
+                {roda.available ? (
+                  <>
+                    {roda.buyer && (
+                      <button
+                        className={styles.conclude_btn}
+                        onClick={() => {
+                          concludeBuyer2(roda._id)
+                        }}
+                      >
+                        Concluir Negociação
+                      </button>
+                    )}
+                    <Link to={`/rodas/edit/${roda._id}`}>Editar</Link>
+                    <button
+                      onClick={() => {
+                        removeRodas(roda._id)
+                      }}
+                    >
+                      Excluir
+                    </button>
+                  </>
+                ) : (
+                  <p className={styles.check}>Compra concluida!</p>
+                )}
+              </div>
+            </div>
+          ))
+        ) : null}
+      </div>
+
+      {/* Exibindo a mensagem única se ambos estiverem vazios */}
+      {(cars.length === 0 && rodas.length === 0) && (
+        <p className={styles.no_items}>Não há itens cadastrados!</p>
+      )}
     </section>
   )
 }

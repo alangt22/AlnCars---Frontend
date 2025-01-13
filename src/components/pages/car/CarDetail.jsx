@@ -65,6 +65,7 @@ const CarDetail = () => {
                     <div className={styles.cardetails_header}>
                         <h1>Conhecendo o Carro: {car.name}</h1>
                         <p>Se tiver interesse, marque uma visita para conhecê-lo</p>
+                        <Link className={styles.back} to={'/home'}>Voltar</Link>
                     </div>
 
                     <button
@@ -131,9 +132,10 @@ const CarDetail = () => {
                             <p>Este carro não possui características adicionais.</p>
                         )}
                     </div>
+                    <h3>Mais Informações:</h3>
                     <div className={styles.featureItem}>
-                        <h3>Mais Informações:</h3>
-                        <p>{car.moreInfo}</p>
+                       
+                        <p className={styles.caracteristicas}>{car.moreInfo}</p>
                     </div>
 
                    

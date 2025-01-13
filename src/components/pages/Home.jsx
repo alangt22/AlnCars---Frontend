@@ -18,13 +18,22 @@ function Home() {
     "Mercedes-Benz", "Jeep", "Mitsubishi"
   ];
 
-  const CarCarousel = ({ car, onNext, onPrev }) => {
-    const currentIndex = car.currentIndex || 0;
+  const CarCarousel = ({ car }) => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    const nextImage = () => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % car.images.length);
+    };
+
+    const prevImage = () => {
+      setCurrentIndex((prevIndex) => (prevIndex - 1 + car.images.length) % car.images.length);
+    };
+
     return (
       <div className={styles.carousel_container}>
         <button
           className={`${styles.carousel_button} ${styles.prev}`}
-          onClick={() => onPrev(car._id)}
+          onClick={prevImage}
         >
           &#10094;
         </button>
@@ -38,7 +47,7 @@ function Home() {
         )}
         <button
           className={`${styles.carousel_button} ${styles.next}`}
-          onClick={() => onNext(car._id)}
+          onClick={nextImage}
         >
           &#10095;
         </button>
@@ -47,7 +56,6 @@ function Home() {
   };
 
   useEffect(() => {
-    
     api.get('/cars').then((response) => {
       const carsWithIndex = response.data.cars.map((car) => ({
         ...car,
@@ -58,7 +66,6 @@ function Home() {
     });
   }, []);
 
-  
   const applyFilter = () => {
     const filtered = cars.filter((car) => {
       const matchesSearch = car.name.toLowerCase().includes(inputs.searchTerm.toLowerCase());
@@ -77,38 +84,14 @@ function Home() {
     }));
   };
 
-  const nextImage = (carId) => {
-    setCars((prevState) =>
-      prevState.map((car) => {
-        if (car._id === carId) {
-          const nextIndex = (car.currentIndex + 1) % car.images.length;
-          return { ...car, currentIndex: nextIndex };
-        }
-        return car;
-      })
-    );
-  };
-
-  const prevImage = (carId) => {
-    setCars((prevState) =>
-      prevState.map((car) => {
-        if (car._id === carId) {
-          const prevIndex = (car.currentIndex - 1 + car.images.length) % car.images.length;
-          return { ...car, currentIndex: prevIndex };
-        }
-        return car;
-      })
-    );
-  };
-
   return (
     <section>
       <div className={styles.car_home_header}>
         <h1><span className='bold'>Carros à Venda:</span> Encontre o Seu Ideal Aqui</h1>
+        <Link className={styles.back} to={'/'}>Voltar</Link>
         <p>Explore nossa variedade de carros de todas as marcas, com opções para todos os gostos e orçamentos. Encontre seu próximo carro hoje mesmo.</p>
 
         <div className={styles.filters}>
-
           <input 
             type="text"
             value={inputs.searchTerm}
@@ -117,7 +100,6 @@ function Home() {
             placeholder="Nome do carro..."
             className={styles.filter_input}
           />
-
           <select
             value={inputs.brandFilter}
             name="brandFilter"
@@ -129,7 +111,6 @@ function Home() {
               <option key={index} value={brand}>{brand}</option>
             ))}
           </select>
-          
           <input 
             type="text"
             value={inputs.cityFilter}
@@ -138,7 +119,6 @@ function Home() {
             placeholder="Cidade..."
             className={styles.filter_input}
           />  
-          
           <button onClick={applyFilter} className={styles.filter_button}>
             Filtrar
           </button>        
@@ -151,13 +131,13 @@ function Home() {
         {filteredCars.length > 0 ? (
           filteredCars.map((car) => (
             <div key={car._id} className={styles.car_card}>
-              <CarCarousel car={car} onNext={nextImage} onPrev={prevImage} />
-              <h3>{car.name}</h3>
+              <CarCarousel car={car} />
+              <h4>{car.name}</h4>
               <p><span className="bold">Marca:</span> {car.brand}</p>
               <p><span className="bold">Preço:</span> {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(car.price)}</p>
               <p><span className="bold">Localidade:</span> {car.location}</p>
               {car.available ? (
-                <Link to={`cars/${car._id}`}>Mais detalhes</Link>
+                <Link to={`/cars/${car._id}`}>Mais detalhes</Link>
               ) : (
                 <p className={styles.adopted_text}>Vendido</p>
               )}

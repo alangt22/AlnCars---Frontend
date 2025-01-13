@@ -7,6 +7,7 @@ import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
 const MyBuyers = () => {
   const [cars, setCars] = useState([]);
+  const [rodas, setRodas] = useState([]);
   const [token] = useState(localStorage.getItem('token') || '');
 
   useEffect(() => {
@@ -20,6 +21,17 @@ const MyBuyers = () => {
     });
   }, [token]);
 
+  useEffect(() => {
+    api.get('/rodas/mybuyers', {
+      headers: {
+        Authorization: `Bearer ${JSON.parse(token)}`
+      }
+    })
+    .then((response) => {
+      setRodas(response.data.rodas);
+    });
+  }, [token]);
+
   return (
     <section>
       <div className={styles.carlist_header}>
@@ -28,7 +40,7 @@ const MyBuyers = () => {
       <div className={styles.carlist_container}>
         {cars.length > 0 ? (
           cars.map((car) => (
-            <div key={car._id} className={styles.carlist_row}>
+            <div key={car._id} className={styles.carlist_row1}>
               <RoundedImage
                 src={`${import.meta.env.VITE_API_URL}/images/cars/${car.images[0]}`}
                 alt={car.name}
@@ -58,15 +70,57 @@ const MyBuyers = () => {
                 {car.available ? (
                   <p>Negociação em processo!</p>
                 ) : (
-                  <p>Parabéns por concluir a Compra</p>
+                  <p className={styles.parabens}>Parabéns por concluir a Compra</p>
                 )}
               </div>
             </div>
           ))
-        ) : (
-          <p>Ainda não há Carros</p>
-        )}
+        ) : null}
+
+
+      {rodas.length > 0 ? (
+          rodas.map((roda) => (
+            <div key={roda._id} className={styles.carlist_row}>
+              <RoundedImage
+                src={`${import.meta.env.VITE_API_URL}/images/rodas/${roda.images[0]}`}
+                alt={roda.name}
+                width="75px"
+              />
+              <span className="bold">{roda.name}</span>
+              <div className={styles.contacts}>
+                <p>
+                  <span className="bold">Ligue para:</span> <span> {roda.user.phone}</span>
+                </p>
+                <p className={styles.app}>Clique no link abaixo para falar no Wathsapp</p>
+                <FontAwesomeIcon icon={faWhatsapp} className={styles.icon}/>
+                <a 
+                  href={`https://api.whatsapp.com/send/?phone=${roda.user.phone}&text=Olá%20${roda.user.name},%20estou%20interessado%20em%20Comprar%20sua%20Roda.%20&type=phone_number&app_absent=0`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.whatsappLink}  // Classe CSS para o link
+                >
+                  {roda.user.phone}
+                </a>
+                <p>
+                  <span className="bold">Fale com:</span> <span>{roda.user.name}</span>
+                </p>
+              </div>
+
+              <div className={styles.actions}>
+                {roda.available ? (
+                  <p>Negociação em processo!</p>
+                ) : (
+                  <p className={styles.parabens}>Parabéns por concluir a Compra</p>
+                )}
+              </div>
+            </div>
+          ))
+        ) : null}
       </div>
+
+      {(cars.length === 0 && rodas.length === 0) && (
+        <p className={styles.no_items}>Não há itens!</p>
+      )}
     </section>
   );
 }

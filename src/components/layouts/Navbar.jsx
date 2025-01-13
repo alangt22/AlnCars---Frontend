@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Navbar.module.css';
-import logo from '../../assets/img/logos.png';  
+import logo from '../../assets/img/bmw.png';  
 import { Context } from '../../context/UserContext';
 import api from '../../utils/api';
 
@@ -77,7 +77,7 @@ const Navbar = () => {
               <Link to="/cars/mybuyers" onClick={handleMenuItemClick}>Minhas Compras</Link>
             </li>
             <li>
-              <Link to="/cars/mycars" onClick={handleMenuItemClick}>Meus Carros</Link>
+              <Link to="/cars/mycars" onClick={handleMenuItemClick}>Meus Anuncios</Link>
             </li>
             <li>
               <Link to="/user/profile" onClick={handleMenuItemClick}>Perfil</Link>

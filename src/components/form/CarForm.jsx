@@ -222,7 +222,7 @@ const Carform = ({ handleSubmit, carData, btnText }) => {
                 handleOnChange={handleFuel}
                 value={car.fuel || ''}
             />
-            <h4>Mais Informações:</h4>
+            <h3>Mais Informações:</h3>
             <textarea 
                 text="Mais informações"
                 type="text"

@@ -12,9 +12,14 @@ import Register from './components/pages/auth/Register.jsx'
 import Profile from './components/pages/User/Profile.jsx'
 import MyCars from './components/pages/car/MyCars.jsx'
 import AddCar from './components/pages/car/AddCar.jsx'
+import AddRoda from './components/pages/car/AddRoda.jsx'
 import EditCar from './components/pages/car/EditCar.jsx'
+import EditRoda from './components/pages/car/EditRoda.jsx'
 import CarDetail from './components/pages/car/CarDetail.jsx'
 import MyBuyers from './components/pages/car/MyBuyers.jsx'
+import Opcoes from './components/pages/Opcoes.jsx'
+import Rodas from './components/pages/Rodas.jsx'
+import RodaDetail from './components/pages/car/RodaDetail.jsx'
 
 const router = createBrowserRouter([
   {
@@ -23,7 +28,15 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
+        element: <Opcoes/>
+      },
+      {
+        path: "/home",
         element: <Home/>
+      },
+      {
+        path: "/rodas",
+        element: <Rodas/>
       },
       {
         path:"/register",
@@ -46,6 +59,10 @@ const router = createBrowserRouter([
         element: <AddCar/>
       },
       {
+        path:"/rodas/add",
+        element: <AddRoda/>
+      },
+      {
         path:"/cars/mybuyers",
         element: <MyBuyers/>
       },
@@ -54,8 +71,16 @@ const router = createBrowserRouter([
         element: <CarDetail/>
       },
       {
+        path:"/rodas/:id",
+        element: <RodaDetail/>
+      },
+      {
         path:"/cars/edit/:id",
         element: <EditCar/>
+      },
+      {
+        path:"/rodas/edit/:id",
+        element: <EditRoda/>
       },
     ]
   }
