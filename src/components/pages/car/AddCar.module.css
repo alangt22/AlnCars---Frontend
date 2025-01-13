@@ -1,10 +1,12 @@
 .addcar_header {
     text-align: center;
     margin-bottom: 1.2em;
+    
   }
   
   .addcar_header h1 {
     margin-bottom: 0.2em;
+    margin-top: 2em;
   }
 
   @media (max-width: 768px){

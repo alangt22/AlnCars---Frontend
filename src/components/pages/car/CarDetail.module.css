@@ -4,13 +4,15 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  background-color: #f4f4f4;
+  background-color: rgba(0, 0, 0, 0.7);
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 90%;
   max-width: 1200px;
   margin: auto;
+  margin-top: 5em;
 }
+
 
 /* Cabeçalho do detalhe do carro */
 .cardetails_header {
@@ -20,13 +22,14 @@
 
 .cardetails_header h1 {
   font-size: 2.5rem;
-  color: #333;
+  color: #ff5100;
 }
 
 .cardetails_header p {
   font-size: 1rem;
-  color: #666;
+  color: #fff;
 }
+
 
 /* Imagens do carro */
 .car_images {
@@ -49,7 +52,7 @@
   top: 50%;
   transform: translateY(-50%);
   background-color: rgba(0, 0, 0, 0.5);
-  color: white;
+  color: #fff;
   border: none;
   padding: 10px;
   cursor: pointer;
@@ -76,7 +79,7 @@
 /* Informações do carro */
 .car_details_container p {
   font-size: 1rem;
-  color: #333;
+  color: #fff;
   margin: 10px 0;
 }
 
@@ -84,10 +87,14 @@
   font-weight: bold;
   color: #000;
 }
+.featureItem .caracteristicas {
+  font-size: 1rem;
+  color: #000;
+}
 
 .car_details_container h3 {
   font-size: 1.5rem;
-  color: #333;
+  color: #ff5100;
   margin-bottom: 10px;
 }
 
@@ -97,17 +104,18 @@
   border-radius: 5px;
   margin-bottom: 8px;
   font-size: 1rem;
-  color: #555;
+  color: #000;
 }
 
+
 .car_details_container a {
-  color: #007bff;
+  color: #fff;
   text-decoration: none;
   font-weight: bold;
 }
 
 .car_details_container a:hover {
-  text-decoration: underline;
+  color:#ff5100 ;
 }
 
 /* Formulário para agendamento de visita */
@@ -162,6 +170,21 @@
   width: 20px;
   height: 20px;
   animation: spin 1s linear infinite;
+}
+.back{
+  margin-top: 2em;
+  left: 280px;
+  position: absolute;
+  top: 100px;
+  background-color: #ff5100;
+  padding: 0.5em;
+  color: #fff;
+  border-radius: 5px;
+}
+.back:hover{
+  background-color: rgba(0, 0, 0, 0.5); /* Preto com 50% de opacidade */
+  color: #ff5100;
+  border: 2px solid #ff5100;
 }
 
 @keyframes spin {

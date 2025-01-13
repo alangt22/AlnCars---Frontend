@@ -1,23 +1,33 @@
-.footer{
-    height: 80px;
+.footer {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #fff;
-    color: #444;
+    flex-direction: column;  /* Alinha os itens na coluna (imagem em cima, texto embaixo) */
+    align-items: center;     /* Alinha os itens horizontalmente ao centro */
+    justify-content: center; /* Alinha os itens verticalmente ao centro */
+    padding: 2em 0;          /* Ajuste do padding para garantir um bom espaçamento */
+    max-height: 180px;
+    background-color: #1b1b1b;
+    color: #fff;
     margin-top: 94px;
-    box-shadow: 2px -5px 10px -6px rgba(0, 0, 0,1);
--webkit-box-shadow: 2px -5px 10px -6px rgba(0, 0, 0,1);
--moz-box-shadow: 2px -5px 10px -6px rgba(0, 0, 0,1);
+    box-shadow: 2px -5px 10px -6px rgba(0, 0, 0, 1);
+    -webkit-box-shadow: 2px -5px 10px -6px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 2px -5px 10px -6px rgba(0, 0, 0, 1);
 }
+
+.footer img {
+    width: 80px;  /* Define o tamanho da imagem */
+    margin-bottom: 1em; /* Espaço entre a imagem e os textos */
+}
+
+.footer p {  /* Se houver textos no footer, estilize-os aqui */
+    text-align: center; /* Garante que o texto estará alinhado no centro */
+    margin: 0; /* Remove margens extras */
+}
+
 .footer a{
     text-decoration: none;
-    color: #000;
+    color: #ff5100;
     cursor: pointer;
 }
 .footer a:hover{
     color: #3ddc35;
-}
-footer p{
-    margin-top: 1em;
 }

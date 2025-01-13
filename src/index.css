@@ -6,12 +6,15 @@
 }
 
 h1 {
-  color: #16479d;
+  color: #ff5100;
   margin-bottom: 1em;
   font-size: 2.1em;
 }
 
 .bold {
-  font-weight: bold;
-  color: #000;
+  font-weight:bold;
+  font-size: 1.1em;
+  color: #ff5100;
 }
+
+

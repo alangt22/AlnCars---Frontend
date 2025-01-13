@@ -6,20 +6,22 @@
     justify-content: center;
 }
 .car_home_header h1 {
-  color: #000;
+  color: #ff5100;
   font-size: 3em;
   text-align: center;
   font-weight: 100;
+  margin-top: 2em;
 }
 
 .car_home_header p{
   text-align: center;
   margin-bottom: 2em;
   font-style: oblique;
+  color: #fff;
 }
   
 .car_card {
-    background-color: #fff;
+  background-color: rgba(0, 0, 0, 0.7); /* Preto com 50% de opacidade */
     border-radius: 10px;
     width: 280px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -27,9 +29,13 @@
     text-align: center;
     transition: transform 0.3s ease-in-out;
     margin-bottom: 20px;
-    height:400px;
+    height:440px;
+    box-shadow: 0px 4px 19px 3px rgba(0, 0, 0,1);
+  -webkit-box-shadow: 0px 4px 19px 3px rgba(0, 0, 0,1);
+  -moz-box-shadow: 0px 4px 19px 3px rgba(0, 0, 0,1);
 }
- .car_card h3 {
+ .car_card h4 {
+  color: #fff;
   font-size: 2em;
   box-shadow: 1px 5px 6px -2px rgba(0, 0, 0,1);
 -webkit-box-shadow: 1px 5px 6px -2px rgba(0, 0, 0,1);
@@ -100,8 +106,8 @@
   }
   
   .car_card p {
-    font-size: 0.9rem;
-    color: #555;
+    font-size: 1.2rem;
+    color: #fff;
     margin-bottom: 10px;
   }
   
@@ -117,9 +123,9 @@
   }
   
   /* Texto de "Vendido" */
-  .adopted_text {
+  .car_card .adopted_text {
     font-size: 1rem;
-    color: #ff0000;
+    color: #3ddc35;
     font-weight: bold;
   }
 
@@ -150,16 +156,26 @@
   width: 50px;
   border-radius: 5px;
   height: 40px;
-  background-color: #007BFF;
+  background-color: #ff5100;
   color: #ccc;
   cursor: pointer;
   border: none;
   font-weight: bold;
 }
-
-.filter_button:hover{
-  background-color: #3ddc35;
+.back{
+  position: absolute;
+  top: 100px;
+  background-color: #ff5100;
+  padding: 0.5em;
   color: #fff;
+  border-radius: 5px;
+}
+
+.filter_button:hover,
+.back:hover{
+  background-color: rgba(0, 0, 0, 0.5); /* Preto com 50% de opacidade */
+  color: #ff5100;
+  border: 2px solid #ff5100;
 }
   
 @media (max-width: 480px) {
@@ -171,12 +187,21 @@
     }
   
   .carousel_container {
-      height: 160px;  /* Ajustar ainda mais a altura do carrossel para telas pequenas */
+      height: 160px;  
     }
   .filters {
     display: flex;
     flex-direction:column;
     align-items: center;
     }
+    .back{
+      position: absolute;
+      top: 100px;
+      background-color: #ff5100;
+      padding: 0.5em;
+      color: #fff;
+      border-radius: 5px;
+    }
+
 }
   
