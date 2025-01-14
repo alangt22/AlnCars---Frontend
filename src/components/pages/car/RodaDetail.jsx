@@ -12,20 +12,33 @@ const RodaDetail = () => {
   const [token] = useState(localStorage.getItem('token') || '')
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isLoading, setIsLoading] = useState(false)
+  const [isImageLoading, setIsImageLoading] = useState(true)
 
   const nextImage = () => {
+    setIsImageLoading(true);  
     setCurrentIndex((prevIndex) => (prevIndex + 1) % roda.images.length)
 }
 
 const prevImage = () => {
+    setIsImageLoading(true);  
     setCurrentIndex((prevIndex) => (prevIndex - 1 + roda.images.length) % roda.images.length)
 }
 
-useEffect(() => {
-    api.get(`/rodas/${id}`).then((response) => {
-        setRoda(response.data.roda)
-    })
-}, [id])
+    useEffect(() => {
+        setIsLoading(true);  // Definir o loading como true enquanto carrega os dados
+        api.get(`/rodas/${id}`).then((response) => {
+            setRoda(response.data.roda);
+            setIsLoading(false);  // Definir o loading como false após carregar os dados
+        }).catch((error) => {
+            setIsLoading(false);
+            setFlashMessage('Erro ao carregar informações da roda.', error);
+        });
+    }, [id]);
+
+    // Função para lidar com o carregamento das imagens
+    const handleImageLoad = () => {
+        setIsImageLoading(false);  // Quando a imagem for carregada, desativa o carregamento
+    }
 
     async function schedule() {
         setIsLoading(true)
@@ -51,56 +64,74 @@ useEffect(() => {
 
   return (
     <>
-      {roda.name && (
-          <section className={styles.car_details_container}>
-            <div className={styles.cardetails_header}>
+        {isLoading ? (
+            <div className={styles.loader}>
+                <div className={styles.spinner}></div>
+            </div>
+        ) : (
+            <>
+            {roda.name && (
+            <section className={styles.car_details_container}>
+                <div className={styles.cardetails_header}>
                 <h1>Detalhes da roda: {roda.name}</h1>
                 <p>Se tiver interesse, marque uma visita para conhecê-lo</p>
                 <Link className={styles.back} to={'/rodas'}>Voltar</Link>
-            </div>
+                </div>
 
-            <button
+                <button
                 className={`${styles.carousel_button} ${styles.prev}`}
                 onClick={prevImage}
-            >
+                >
                 &#10094;
-            </button>
-            <div className={styles.car_images}>
-                {roda.images && roda.images.length > 0 && (
-                    <img
-                        src={`${import.meta.env.VITE_API_URL}/images/rodas/${roda.images[currentIndex]}`}
-                        alt={roda.name}
-                    />
-                )}
-            </div>
+                </button>
+                <div className={styles.car_images}>
+                    {roda.images && roda.images.length > 0 && (
+                        <>
+                            {isImageLoading && (  // Exibe o loader enquanto a imagem carrega
+                                <div className={styles.loader}>
+                                    <div className={styles.spinner}></div>
+                                </div>
+                            )}
+                            <img
+                                src={`${import.meta.env.VITE_API_URL}/images/rodas/${roda.images[currentIndex]}`}
+                                alt={roda.name}
+                                loading="lazy"
+                                onLoad={handleImageLoad}  // Quando a imagem carregar, desativa o loader
+                                style={{ display: isImageLoading ? 'none' : 'block' }}  // Só exibe a imagem quando estiver carregada
+                            />
+                        </>
+                    )}
+                </div>
 
-            <button
+                <button
                 className={`${styles.carousel_button} ${styles.next}`}
                 onClick={nextImage} 
-            >
+                >
                 &#10095;
-            </button>
+                </button>
 
-            {token ? (
+                {token ? (
                 <div className={NewStyles.form_container_2}>
-                    <button
-                        type='submit'
-                        onClick={schedule}
-                        disabled={isLoading}  
-                        className={styles.submitButton_1}
-                    >
-                        {isLoading ? (
-                            <span className={NewStyles.loader_2}></span> 
-                        ) : (
-                            "Solicitar uma visita" 
-                        )}
-                    </button>
+                <button
+                type='submit'
+                onClick={schedule}
+                disabled={isLoading}  
+                className={styles.submitButton_1}
+                >
+                {isLoading ? (
+                    <span className={NewStyles.loader_2}></span> 
+                ) : (
+                    "Solicitar uma visita" 
+                )}
+                </button>
                 </div>
-            ) : (
+                ) : (
                 <p>Você precisa <Link to='/register'>criar uma conta</Link> para solicitar a visita</p>
-            )}
-          </section>
-      )}
+                )}
+            </section>
+        )}
+            </>
+        )}
     </>
   )
 }

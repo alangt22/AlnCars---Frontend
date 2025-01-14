@@ -6,6 +6,7 @@ import styles from './Home.module.css';
 function Rodas() {
   const [rodas, setRodas] = useState([]);
   const [filteredRodas, setFilteredRodas] = useState([]);
+  const [isLoading, setIsLoading] = useState(true); 
 
   // Carousel component for displaying roda images
   const CarCarousel = ({ roda, onNext, onPrev }) => {
@@ -53,8 +54,13 @@ function Rodas() {
         currentIndex: 0,
       }));
       setRodas(carsWithIndex);
-      setFilteredRodas(carsWithIndex); // Assuming you want to show all rodas at the start
-    });
+      setFilteredRodas(carsWithIndex);
+      setIsLoading(false); 
+    })
+    .catch((error) => {
+      console.error("Erro ao carregar rodas:", error)
+      setIsLoading(false); 
+    })
   }, []);
 
   // Render the list of rodas
@@ -70,6 +76,12 @@ function Rodas() {
         </p>
       </div>
       <div className={styles.car_container}>
+      {isLoading ? (
+          <div className={styles.loader}>
+            <div className={styles.spinner}></div> {/* Bolinha girando */}
+          </div>
+      ) : (
+        <>
         {filteredRodas.length > 0 ? (
           filteredRodas.map((roda) => (
             <div key={roda._id} className={styles.car_card}>
@@ -89,6 +101,8 @@ function Rodas() {
         ) : (
           <p>Não há carros cadastrados ou disponíveis para compra no momento!</p>
         )}
+        </>
+      )}
       </div>
     </section>
   );

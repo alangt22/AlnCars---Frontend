@@ -11,6 +11,7 @@ function Home() {
     cityFilter: ''
   });
   const [filteredCars, setFilteredCars] = useState([]);
+  const [isLoading, setIsLoading] = useState(true); 
 
   const brands = [
     "Honda", "Fiat", "Ford", "Chevrolet", "Renault", "Toyota",
@@ -45,7 +46,6 @@ function Home() {
           loading="lazy"
         />
       )}
-
         <button
           className={`${styles.carousel_button} ${styles.next}`}
           onClick={nextImage}
@@ -57,14 +57,20 @@ function Home() {
   };
 
   useEffect(() => {
-    api.get('/cars').then((response) => {
-      const carsWithIndex = response.data.cars.map((car) => ({
-        ...car,
-        currentIndex: 0, 
-      }));
-      setCars(carsWithIndex);
-      setFilteredCars(carsWithIndex); 
-    });
+    api.get('/cars')
+      .then((response) => {
+        const carsWithIndex = response.data.cars.map((car) => ({
+          ...car,
+          currentIndex: 0, 
+        }));
+        setCars(carsWithIndex);
+        setFilteredCars(carsWithIndex); 
+        setIsLoading(false); // Dados carregados, parar o loader
+      })
+      .catch((error) => {
+        console.error("Erro ao carregar os carros:", error);
+        setIsLoading(false); // Parar o loader mesmo em caso de erro
+      });
   }, []);
 
   const applyFilter = () => {
@@ -128,26 +134,34 @@ function Home() {
         {filteredCars.length === 0 && <h1>Nenhum carro encontrado!</h1>}
       </div>
 
-      <div className={styles.car_container}>
-        {filteredCars.length > 0 ? (
-          filteredCars.map((car) => (
-            <div key={car._id} className={styles.car_card}>
-              <CarCarousel car={car} />
-              <h4>{car.name}</h4>
-              <p><span className="bold">Marca:</span> {car.brand}</p>
-              <p><span className="bold">Preço:</span> {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(car.price)}</p>
-              <p><span className="bold">Localidade:</span> {car.location}</p>
-              {car.available ? (
-                <Link to={`/cars/${car._id}`}>Mais detalhes</Link>
-              ) : (
-                <p className={styles.adopted_text}>Vendido</p>
-              )}
-            </div>
-          ))
+      {/* Loader Exibido enquanto os carros estão sendo carregados */}
+      {isLoading ? (
+          <div className={styles.loader}>
+            <div className={styles.spinner}></div> {/* Bolinha girando */}
+          </div>
         ) : (
-          <p>Não há carros cadastrados ou disponíveis para compra no momento!</p>
+          <div className={styles.car_container}>
+            {filteredCars.length > 0 ? (
+              filteredCars.map((car) => (
+                <div key={car._id} className={styles.car_card}>
+                  <CarCarousel car={car} />
+                  <h4>{car.name}</h4>
+                  <p><span className="bold">Marca:</span> {car.brand}</p>
+                  <p><span className="bold">Preço:</span> {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(car.price)}</p>
+                  <p><span className="bold">Localidade:</span> {car.location}</p>
+                  {car.available ? (
+                    <Link to={`/cars/${car._id}`}>Mais detalhes</Link>
+                  ) : (
+                    <p className={styles.adopted_text}>Vendido</p>
+                  )}
+                </div>
+              ))
+            ) : (
+              <p>Não há carros cadastrados ou disponíveis para compra no momento!</p>
+            )}
+          </div>
         )}
-      </div>
+
     </section>
   );
 }

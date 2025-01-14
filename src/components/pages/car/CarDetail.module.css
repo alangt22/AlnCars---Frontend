@@ -192,6 +192,30 @@
   100% { transform: rotate(360deg); }
 }
 
+/* Estilo do loader (bolinha girando) */
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh; /* Ocupa toda a altura da tela */
+}
+
+.spinner {
+  border: 8px solid #f3f3f3; /* Cor do fundo da bolinha */
+  border-top: 8px solid #ff5100; /* Cor da parte superior da bolinha */
+  border-radius: 50%; /* Forma circular */
+  width: 50px; /* Tamanho da bolinha */
+  height: 50px; /* Tamanho da bolinha */
+  animation: spin 2s linear infinite; /* Animação de rotação */
+}
+
+/* Animação de rotação */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
 /* Responsividade */
 @media (max-width: 768px) {
   .car_images {
