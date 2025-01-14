@@ -81,6 +81,7 @@ const CarDetail = () => {
                             <img
                                 src={`${import.meta.env.VITE_API_URL}/images/cars/${car.images[currentIndex]}`}
                                 alt={car.name}
+                                loading="lazy"
                             />
                         )}
                     </div>

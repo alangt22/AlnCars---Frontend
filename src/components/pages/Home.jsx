@@ -38,13 +38,14 @@ function Home() {
           &#10094;
         </button>
         {car.images && car.images.length > 0 && (
-          <div
-            style={{
-              backgroundImage: `url(${import.meta.env.VITE_API_URL}/images/cars/${car.images[currentIndex]})`,
-            }}
-            className={styles.car_card_image}
-          ></div>
-        )}
+        <img
+          src={`${import.meta.env.VITE_API_URL}/images/cars/${car.images[currentIndex]}`}
+          alt={car.name}
+          className={styles.car_card_image}
+          loading="lazy"
+        />
+      )}
+
         <button
           className={`${styles.carousel_button} ${styles.next}`}
           onClick={nextImage}
