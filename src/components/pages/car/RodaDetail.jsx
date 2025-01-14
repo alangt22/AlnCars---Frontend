@@ -12,15 +12,12 @@ const RodaDetail = () => {
   const [token] = useState(localStorage.getItem('token') || '')
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isLoading, setIsLoading] = useState(false)
-  const [isImageLoading, setIsImageLoading] = useState(true)
 
   const nextImage = () => {
-    setIsImageLoading(true);  
     setCurrentIndex((prevIndex) => (prevIndex + 1) % roda.images.length)
 }
 
 const prevImage = () => {
-    setIsImageLoading(true);  
     setCurrentIndex((prevIndex) => (prevIndex - 1 + roda.images.length) % roda.images.length)
 }
 
@@ -34,11 +31,6 @@ const prevImage = () => {
             setFlashMessage('Erro ao carregar informações da roda.', error);
         });
     }, [id]);
-
-    // Função para lidar com o carregamento das imagens
-    const handleImageLoad = () => {
-        setIsImageLoading(false);  // Quando a imagem for carregada, desativa o carregamento
-    }
 
     async function schedule() {
         setIsLoading(true)
@@ -85,22 +77,12 @@ const prevImage = () => {
                 &#10094;
                 </button>
                 <div className={styles.car_images}>
-                    {roda.images && roda.images.length > 0 && (
-                        <>
-                            {isImageLoading && (  // Exibe o loader enquanto a imagem carrega
-                                <div className={styles.loader}>
-                                    <div className={styles.spinner}></div>
-                                </div>
-                            )}
-                            <img
-                                src={`${import.meta.env.VITE_API_URL}/images/rodas/${roda.images[currentIndex]}`}
-                                alt={roda.name}
-                                loading="lazy"
-                                onLoad={handleImageLoad}  // Quando a imagem carregar, desativa o loader
-                                style={{ display: isImageLoading ? 'none' : 'block' }}  // Só exibe a imagem quando estiver carregada
-                            />
-                        </>
-                    )}
+                {roda.images && roda.images.length > 0 && (
+                <img
+                src={`${import.meta.env.VITE_API_URL}/images/rodas/${roda.images[currentIndex]}`}
+                alt={roda.name}
+                />
+                )}
                 </div>
 
                 <button
