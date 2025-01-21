@@ -44,16 +44,12 @@
     padding: 0.5em 0.8em;
     border-radius: 5px;
 }
+.navbar a:hover{
+    color: #ccc;
+}
 
 .navbar li:hover {
     color: #fb0000;
-}
-
-.navbar li:hover > a {
-    color: #fff;
-    text-decoration: none;
-    margin-bottom: 1px;
-
 }
 
 /* Estilos para o menu hamburguer */
@@ -109,10 +105,6 @@
     }
 
     .navbar li:hover {
-        background-color: #fff;
-        color: #fff;
-    }
-    .navbar li:hover {
         color: #df4b4b;
     }
     
@@ -122,20 +114,7 @@
 /*/
 
 /* Definição da bolinha verde */
-.onlineCircle {
-    width: 25px;
-    height: 25px;
-    background-color: rgb(125, 236, 125);
-    border-radius: 50%;
-    display: inline-block;
-    margin-left: 10px;  
-  }
-  .onlineCircle span{
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+
   
   /* Outras estilizações do perfil */
   .profilePicContainer {
